@@ -15,11 +15,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
-// react plugin used to create charts
-import { Line } from "react-chartjs-2";
 
 // reactstrap components
 import {
@@ -31,21 +29,167 @@ import {
   CardTitle,
   Row,
   Col,
+  Table
 } from "reactstrap";
 
-// core components
-import {
-  chartExample1,
-} from "variables/charts.js";
 
 function Tasks(props) {
 
-  const [tasksFilter, setTasksFilter] = useState('all');
+  const [taskTypeFilter, setTaskTypeFilter] = useState('all');
+  const [tasksList, setTasksList] = useState([]);
 
-  const [bigChartData, setbigChartData] = React.useState("data1");
-  const setBgChartData = (name) => {
-    setbigChartData(name);
-  };
+  function getData() {
+    setTasksList([
+      {
+        name: 'Create ToDo repo',
+        category: 'Development',
+        status: 'Complete',
+        start: '2023-08-23T05:10:00.000Z',
+        end: '2023-08-23T10:10:00.000Z',
+        createdAt: '2023-08-23T03:10:00.000Z',
+        updatedAt: '2023-08-23T03:10:00.000Z'
+      },
+      {
+        name: 'Select a theme',
+        category: 'Development',
+        status: 'Complete',
+        start: '2023-08-23T05:10:00.000Z',
+        end: '2023-08-23T10:10:00.000Z',
+        createdAt: '2023-08-23T03:10:00.000Z',
+        updatedAt: '2023-08-23T03:10:00.000Z'
+      },
+      {
+        name: 'Browse the new theme',
+        category: 'Development',
+        status: 'Ongoing',
+        start: '2023-08-23T05:10:00.000Z',
+        end: '2023-08-23T10:10:00.000Z',
+        createdAt: '2023-08-23T03:10:00.000Z',
+        updatedAt: '2023-08-23T03:10:00.000Z'
+      },
+      {
+        name: 'Create Listing page',
+        category: 'Development',
+        status: 'Ongoing',
+        start: '2023-08-23T05:10:00.000Z',
+        end: '2023-08-23T10:10:00.000Z',
+        createdAt: '2023-08-23T03:10:00.000Z',
+        updatedAt: '2023-08-23T03:10:00.000Z'
+      },
+      {
+        name: 'Task 33',
+        category: 'Development',
+        status: 'Ongoing',
+        start: '2023-08-23T05:10:00.000Z',
+        end: '2023-08-23T10:10:00.000Z',
+        createdAt: '2023-08-23T03:10:00.000Z',
+        updatedAt: '2023-08-23T03:10:00.000Z'
+      },
+      {
+        name: 'Task 34',
+        category: 'Development',
+        status: 'Ongoing',
+        start: '2023-08-23T05:10:00.000Z',
+        end: '2023-08-23T10:10:00.000Z',
+        createdAt: '2023-08-23T03:10:00.000Z',
+        updatedAt: '2023-08-23T03:10:00.000Z'
+      },
+      {
+        name: 'Task 35',
+        category: 'Development',
+        status: 'Ongoing',
+        start: '2023-08-23T05:10:00.000Z',
+        end: '2023-08-23T10:10:00.000Z',
+        createdAt: '2023-08-23T03:10:00.000Z',
+        updatedAt: '2023-08-23T03:10:00.000Z'
+      },
+      {
+        name: 'Task 36',
+        category: 'Development',
+        status: 'Ongoing',
+        start: '2023-08-23T05:10:00.000Z',
+        end: '2023-08-23T10:10:00.000Z',
+        createdAt: '2023-08-23T03:10:00.000Z',
+        updatedAt: '2023-08-23T03:10:00.000Z'
+      },
+      {
+        name: 'Task 37',
+        category: 'Development',
+        status: 'Ongoing',
+        start: '2023-08-23T05:10:00.000Z',
+        end: '2023-08-23T10:10:00.000Z',
+        createdAt: '2023-08-23T03:10:00.000Z',
+        updatedAt: '2023-08-23T03:10:00.000Z'
+      },
+      {
+        name: 'Task 38',
+        category: 'Development',
+        status: 'Ongoing',
+        start: '2023-08-23T05:10:00.000Z',
+        end: '2023-08-23T10:10:00.000Z',
+        createdAt: '2023-08-23T03:10:00.000Z',
+        updatedAt: '2023-08-23T03:10:00.000Z'
+      },
+      {
+        name: 'Task 39',
+        category: 'Development',
+        status: 'Ongoing',
+        start: '2023-08-23T05:10:00.000Z',
+        end: '2023-08-23T10:10:00.000Z',
+        createdAt: '2023-08-23T03:10:00.000Z',
+        updatedAt: '2023-08-23T03:10:00.000Z'
+      },
+      {
+        name: 'Task 40',
+        category: 'Development',
+        status: 'Ongoing',
+        start: '2023-08-23T05:10:00.000Z',
+        end: '2023-08-23T10:10:00.000Z',
+        createdAt: '2023-08-23T03:10:00.000Z',
+        updatedAt: '2023-08-23T03:10:00.000Z'
+      },
+      {
+        name: 'Task 41',
+        category: 'Development',
+        status: 'Ongoing',
+        start: '2023-08-23T05:10:00.000Z',
+        end: '2023-08-23T10:10:00.000Z',
+        createdAt: '2023-08-23T03:10:00.000Z',
+        updatedAt: '2023-08-23T03:10:00.000Z'
+      },
+      {
+        name: 'Task 42',
+        category: 'Development',
+        status: 'Ongoing',
+        start: '2023-08-23T05:10:00.000Z',
+        end: '2023-08-23T10:10:00.000Z',
+        createdAt: '2023-08-23T03:10:00.000Z',
+        updatedAt: '2023-08-23T03:10:00.000Z'
+      },
+      {
+        name: 'Task 43',
+        category: 'Development',
+        status: 'Ongoing',
+        start: '2023-08-23T05:10:00.000Z',
+        end: '2023-08-23T10:10:00.000Z',
+        createdAt: '2023-08-23T03:10:00.000Z',
+        updatedAt: '2023-08-23T03:10:00.000Z'
+      },
+      {
+        name: 'Task 44',
+        category: 'Development',
+        status: 'Ongoing',
+        start: '2023-08-23T05:10:00.000Z',
+        end: '2023-08-23T10:10:00.000Z',
+        createdAt: '2023-08-23T03:10:00.000Z',
+        updatedAt: '2023-08-23T03:10:00.000Z'
+      },
+    ])
+  }
+
+  useEffect(() => {
+    getData();
+  }, [])
 
   return (
     <>
@@ -67,12 +211,12 @@ function Tasks(props) {
                       <Button
                         tag="label"
                         className={classNames("btn-simple", {
-                          active: bigChartData === "data1",
+                          active: taskTypeFilter === "all",
                         })}
                         color="info"
                         id="0"
                         size="sm"
-                        onClick={() => setBgChartData("data1")}
+                        onClick={() => setTaskTypeFilter("all")}
                       >
                         <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
                           All
@@ -87,9 +231,9 @@ function Tasks(props) {
                         size="sm"
                         tag="label"
                         className={classNames("btn-simple", {
-                          active: bigChartData === "data2",
+                          active: taskTypeFilter === "completed",
                         })}
-                        onClick={() => setBgChartData("data2")}
+                        onClick={() => setTaskTypeFilter("completed")}
                       >
                         <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
                           Completed
@@ -104,12 +248,12 @@ function Tasks(props) {
                         size="sm"
                         tag="label"
                         className={classNames("btn-simple", {
-                          active: bigChartData === "data3",
+                          active: taskTypeFilter === "ongoing",
                         })}
-                        onClick={() => setBgChartData("data3")}
+                        onClick={() => setTaskTypeFilter("ongoing")}
                       >
                         <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                          Pending
+                          Ongoing
                         </span>
                         <span className="d-block d-sm-none">
                           <i className="tim-icons icon-tap-02" />
@@ -120,11 +264,62 @@ function Tasks(props) {
                 </Row>
               </CardHeader>
               <CardBody>
-                <div className="chart-area">
-                  <Line
+                <div>
+                  {/* <Line
                     data={chartExample1[bigChartData]}
                     options={chartExample1.options}
-                  />
+                  /> */}
+                  <Table className="tablesorter" responsive>
+                  <thead className="text-primary">
+                    <tr>
+                      <th>Task</th>
+                      <th>Category</th>
+                      <th>Status</th>
+                      <th>Start Time</th>
+                      <th>End Time</th>
+                      <th>Created At</th>
+                      <th>Modified At</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tasksList.map((task, ind) => {
+                      return (
+                        <tr key={`task-list-${ind}`}>
+                          <td>{task.name}</td>
+                          <td>{task.category}</td>
+                          <td>{task.status}</td>
+                          <td>{task.start}</td>
+                          <td>{task.end}</td>
+                          <td>{task.createdAt}</td>
+                          <td>{task.updatedAt}</td>
+                        </tr>
+                      )
+                    })}
+                    
+                    {/* <tr>
+                      <td>Select a theme</td>
+                      <td>Development</td>
+                      <td>Complete</td>
+                      <td>8/23/2023, 10:10:00 AM</td>
+                      <td >8/23/2023, 12:00:00 PM</td>
+                    </tr>
+                    <tr>
+                      <td>Browse the new theme</td>
+                      <td>Development</td>
+                      <td>Ongoing</td>
+                      <td>8/23/2023, 12:10:00 AM</td>
+                      <td >8/23/2023, 12:30:00 PM</td>
+                    </tr>
+                    <tr>
+                      <td>Create Listing page</td>
+                      <td>Development</td>
+                      <td>Ongoing</td>
+                      <td>8/23/2023, 12:10:00 AM</td>
+                      <td >8/23/2023, 02:30:00 PM</td>
+                    </tr> */}
+                    
+                  </tbody>
+                </Table>
                 </div>
               </CardBody>
             </Card>
